@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Models;
@@ -28,11 +29,9 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected function casts(): array
+    public function getAuthPassword()
     {
-        return [
-            'password' => 'hashed',
-        ];
+        return $this->password;
     }
 
     public function mahasiswa(): HasOne
