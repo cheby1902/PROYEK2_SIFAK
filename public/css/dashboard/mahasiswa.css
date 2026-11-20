@@ -1,0 +1,424 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #172b4d;
+}
+
+/* LAYOUT */
+.sifak-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #172b4d;
+    padding: 20px 18px;
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    padding-left: 6px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    display: block;
+    padding: 13px 16px;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.menu-item:hover {
+    background-color: #263e62;
+}
+
+.menu-item.active {
+    background-color: #ff7a18;
+    color: #172b4d;
+}
+
+/* MAIN */
+.main-area {
+    flex: 1;
+    min-width: 0;
+}
+
+/* HEADER */
+.topbar {
+    height: 68px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 2px solid #edf0f4;
+}
+
+/* tombol ☰ disembunyikan di desktop, hanya muncul di layar kecil */
+.sidebar-toggle {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 26px;
+    color: #172b4d;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.nama-user {
+    font-size: 17px;
+    font-weight: bold;
+    color: #172b4d;
+    margin-right: auto;
+}
+
+.logout-btn {
+    border: none;
+    background-color: #172b4d;
+    color: white;
+    padding: 9px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #263e62;
+}
+
+/* CONTENT */
+.dashboard-content {
+    padding: 35px 40px;
+}
+
+.dashboard-content h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    color: #475467;
+    margin-bottom: 28px;
+}
+
+/* CARD */
+.total-card {
+    width: 220px;
+    padding: 14px 18px 16px;
+    background-color: #fff7ed;
+    border: 2px solid #ffdfbd;
+    border-radius: 12px;
+    margin-bottom: 35px;
+}
+
+.card-label {
+    font-size: 14px;
+    color: #475467;
+    margin-bottom: 4px;
+}
+
+.card-number {
+    font-size: 30px;
+    font-weight: bold;
+    color: #172b4d;
+}
+
+/* HISTORY */
+.history-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #e1e7ef;
+}
+
+.history-table th {
+    background-color: #172b4d;
+    color: white;
+    padding: 18px 20px;
+    text-align: left;
+    font-size: 16px;
+    border-right: 1px solid #2f4468;
+    white-space: nowrap;
+}
+
+.history-table th:last-child {
+    border-right: none;
+}
+
+.history-table td {
+    padding: 20px;
+    border: none;
+    border-bottom: 1px solid #e1e7ef;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 17px;
+}
+
+.history-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* DESKRIPSI */
+.deskripsi {
+    min-width: 110px;
+    max-width: 130px;
+    overflow-wrap: anywhere;
+}
+
+/* FOTO */
+.foto-btn {
+    display: inline-block;
+    background-color: #e5ebf3;
+    color: #475467;
+    border: none;
+    padding: 12px 17px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.foto-btn:hover {
+    background-color: #d2dce9;
+}
+
+/* STATUS */
+.status-badge {
+    display: inline-block;
+    background-color: #e5ebf3;
+    color: #475467;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* AKSI */
+.aksi {
+    white-space: nowrap;
+}
+
+.detail-dropdown {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 8px;
+}
+
+.detail-btn {
+    display: inline-block;
+    list-style: none;
+    cursor: pointer;
+    background-color: #172b4d;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.detail-btn::-webkit-details-marker {
+    display: none;
+}
+
+.detail-content {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    z-index: 10;
+    width: 260px;
+    padding: 16px;
+    text-align: left;
+    white-space: normal;
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid #d9e0e8;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.detail-content p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.aksi form {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.hapus-btn {
+    background-color: white;
+    color: #b42318;
+    border: 1px solid #d92d20;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hapus-btn:hover {
+    background-color: #fff1f0;
+}
+
+/* DATA KOSONG */
+.history-table td.empty-data {
+    text-align: center;
+    padding: 30px;
+    color: #667085;
+}
+
+/* ALERT */
+.alert-success {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    color: #027a48;
+    background-color: #ecfdf3;
+    border: 1px solid #abefc6;
+    border-radius: 8px;
+}
+
+.alert-close {
+    border: none;
+    background: none;
+    font-size: 22px;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* MODAL FOTO */
+.foto-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.foto-modal.show,
+.foto-modal.active {
+    display: flex;
+}
+
+.foto-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.foto-modal-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 8px;
+}
+
+.foto-modal-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 220px;
+        padding: 20px 15px;
+    }
+
+    .logo {
+        font-size: 24px;
+        padding-left: 0;
+    }
+
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .nama-user {
+        font-size: 15px;
+    }
+
+    .logout-btn {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    .dashboard-content {
+        padding: 25px 20px;
+    }
+
+    .total-card {
+        width: 100%;
+    }
+}

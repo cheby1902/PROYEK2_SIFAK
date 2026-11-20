@@ -3,13 +3,31 @@
 
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\SarprasController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Halaman utama diarahkan ke login
+// Halaman utama
 Route::get('/', function () {
+
+    if (Auth::check()) {
+        $role = Auth::user()->role;
+
+        if ($role === 'mahasiswa') {
+            return redirect('/mahasiswa/dashboard');
+        }
+
+        if ($role === 'sarpras') {
+            return redirect('/sarpras/dashboard');
+        }
+
+        if ($role === 'akademik') {
+            return redirect('/akademik/dashboard');
+        }
+    }
+
     return redirect()->route('login');
 });
 
@@ -102,4 +120,17 @@ Route::middleware(['auth', 'role:akademik'])
 
         Route::delete('/user/{user}', [AkademikController::class, 'userDestroy'])
             ->name('user.destroy');
+    });
+
+// ---------- MAHASISWA ----------
+Route::middleware(['auth', 'role:mahasiswa'])
+    ->prefix('mahasiswa')
+    ->name('mahasiswa.')
+    ->group(function () {
+
+        Route::get('/dashboard', [MahasiswaController::class, 'dashboard'])
+            ->name('dashboard');
+
+        Route::delete('/pengaduan/{id}', [MahasiswaController::class, 'destroy'])
+            ->name('pengaduan.destroy');
     });
