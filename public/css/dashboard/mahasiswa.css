@@ -1,4 +1,3 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,23 +6,36 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
-    color: #172b4d;
+    background-color: #f4f6f9;
+    color: #333;
 }
 
-/* LAYOUT */
+a {
+    text-decoration: none;
+}
+
+/* ========================================
+   LAYOUT UTAMA
+======================================== */
+
 .sifak-layout {
     display: flex;
     min-height: 100vh;
+    width: 100%;
 }
 
-/* SIDEBAR */
+/* ========================================
+   SIDEBAR
+======================================== */
+
 .sidebar {
     width: 250px;
+    min-width: 250px;
     min-height: 100vh;
     background-color: #172b4d;
-    padding: 20px 18px;
-    flex-shrink: 0;
+    color: white;
+    padding: 25px 18px;
+    transition: transform 0.3s ease;
 }
 
 .logo {
@@ -39,11 +51,11 @@ body {
 }
 
 .logo-icon {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
 }
 
+/* MENU SIDEBAR */
 .sidebar-menu {
     display: flex;
     flex-direction: column;
@@ -52,65 +64,83 @@ body {
 
 .menu-item {
     display: block;
-    padding: 13px 16px;
-    text-decoration: none;
-    color: white;
+    padding: 14px 18px;
+    color: #e5eaf2;
     font-size: 15px;
-    font-weight: bold;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: 0.2s;
 }
 
-.menu-item:hover {
-    background-color: #263e62;
-}
-
+.menu-item:hover,
 .menu-item.active {
     background-color: #ff7a18;
     color: #172b4d;
+    font-weight: bold;
 }
 
-/* MAIN */
+/* ========================================
+   AREA UTAMA
+======================================== */
+
 .main-area {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-/* HEADER */
+/* ========================================
+   TOPBAR
+======================================== */
+
 .topbar {
-    height: 68px;
-    padding: 0 40px;
+    min-height: 75px;
+    background-color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    border-bottom: 2px solid #edf0f4;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 15px 35px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* tombol ☰ disembunyikan di desktop, hanya muncul di layar kecil */
-.sidebar-toggle {
-    display: none;
-    border: none;
-    background: none;
-    font-size: 26px;
+/* PROFIL MAHASISWA */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+}
+
+.user-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #edf1f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #172b4d;
-    cursor: pointer;
-    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.user-icon svg {
+    width: 22px;
+    height: 22px;
 }
 
 .nama-user {
     font-size: 17px;
     font-weight: bold;
     color: #172b4d;
-    margin-right: auto;
 }
 
 .logout-btn {
     border: none;
     background-color: #172b4d;
     color: white;
-    padding: 9px 22px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 6px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -121,304 +151,458 @@ body {
     background-color: #263e62;
 }
 
-/* CONTENT */
+/* TOMBOL MENU MOBILE */
+
+.sidebar-toggle {
+    display: none;
+    border: none;
+    background-color: #172b4d;
+    color: white;
+    padding: 9px 13px;
+    border-radius: 6px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ========================================
+   KONTEN DASHBOARD
+======================================== */
+
 .dashboard-content {
-    padding: 35px 40px;
+    padding: 35px;
+    width: 100%;
 }
 
 .dashboard-content h1 {
-    font-size: 34px;
-    margin-bottom: 8px;
+    color: #172b4d;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
 .welcome-text {
-    font-size: 18px;
-    color: #475467;
-    margin-bottom: 28px;
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 25px;
 }
 
-/* CARD */
+/* ========================================
+   ALERT SUKSES
+======================================== */
+
+.alert-success {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background-color: #e8f7ed;
+    color: #237a42;
+    border: 1px solid #b7e4c7;
+    padding: 14px 18px;
+    border-radius: 7px;
+    margin-bottom: 22px;
+}
+
+.alert-close {
+    border: none;
+    background: transparent;
+    color: #237a42;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+/* ========================================
+   TOTAL PENGADUAN
+======================================== */
+
 .total-card {
-    width: 220px;
-    padding: 14px 18px 16px;
-    background-color: #fff7ed;
-    border: 2px solid #ffdfbd;
-    border-radius: 12px;
+    width: 250px;
+    background-color: white;
+    padding: 22px;
+    border-radius: 10px;
+    border-left: 5px solid #172b4d;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
     margin-bottom: 35px;
 }
 
 .card-label {
+    color: #777;
     font-size: 14px;
-    color: #475467;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
 }
 
 .card-number {
-    font-size: 30px;
-    font-weight: bold;
     color: #172b4d;
+    font-size: 32px;
+    font-weight: bold;
 }
 
-/* HISTORY */
+/* ========================================
+   RIWAYAT PENGADUAN
+======================================== */
+
+.history-section {
+    width: 100%;
+}
+
 .history-section h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
+    color: #172b4d;
+    font-size: 21px;
+    margin-bottom: 18px;
 }
 
 .table-container {
     width: 100%;
     overflow-x: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
 }
 
 .history-table {
     width: 100%;
-    min-width: 1050px;
+    min-width: 1000px;
     border-collapse: collapse;
     background-color: white;
-    border: 1px solid #e1e7ef;
+}
+
+.history-table thead {
+    background-color: #172b4d;
+    color: white;
 }
 
 .history-table th {
-    background-color: #172b4d;
-    color: white;
-    padding: 18px 20px;
+    padding: 15px 13px;
     text-align: left;
-    font-size: 16px;
-    border-right: 1px solid #2f4468;
-    white-space: nowrap;
-}
-
-.history-table th:last-child {
-    border-right: none;
-}
-
-.history-table td {
-    padding: 20px;
-    border: none;
-    border-bottom: 1px solid #e1e7ef;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 17px;
-}
-
-.history-table tbody tr:hover {
-    background-color: #f8fafc;
-}
-
-/* DESKRIPSI */
-.deskripsi {
-    min-width: 110px;
-    max-width: 130px;
-    overflow-wrap: anywhere;
-}
-
-/* FOTO */
-.foto-btn {
-    display: inline-block;
-    background-color: #e5ebf3;
-    color: #475467;
-    border: none;
-    padding: 12px 17px;
-    border-radius: 6px;
     font-size: 13px;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-.foto-btn:hover {
-    background-color: #d2dce9;
-}
-
-/* STATUS */
-.status-badge {
-    display: inline-block;
-    background-color: #e5ebf3;
-    color: #475467;
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 15px;
     font-weight: bold;
     white-space: nowrap;
 }
 
-/* AKSI */
-.aksi {
+.history-table td {
+    padding: 14px 13px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.history-table tbody tr:hover {
+    background-color: #f8faff;
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.deskripsi {
+    min-width: 180px;
+    max-width: 250px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   TOMBOL FOTO
+======================================== */
+
+.foto-btn {
+    border: none;
+    background-color: #e8edf5;
+    color: #172b4d;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.foto-btn:hover {
+    background-color: #d5deeb;
+}
+
+/* ========================================
+   STATUS PENGADUAN
+======================================== */
+
+.status-badge {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
     white-space: nowrap;
 }
 
-.detail-dropdown {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    margin-right: 8px;
+.status-menunggu {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-diproses {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-selesai {
+    background-color: #d1fae5;
+    color: #047857;
+}
+
+.status-ditolak {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ========================================
+   TOMBOL AKSI: DETAIL DAN HAPUS
+======================================== */
+
+.aksi {
+    white-space: nowrap;
+    min-width: 165px;
 }
 
 .detail-btn {
     display: inline-block;
-    list-style: none;
-    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
     background-color: #172b4d;
     color: white;
     padding: 10px 16px;
+    border: none;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-right: 5px;
 }
 
-.detail-btn::-webkit-details-marker {
-    display: none;
+.detail-btn:hover {
+    background-color: #263e62;
+    color: white;
 }
 
-.detail-content {
-    position: absolute;
-    top: 44px;
-    right: 0;
-    z-index: 10;
-    width: 260px;
-    padding: 16px;
-    text-align: left;
-    white-space: normal;
-    font-size: 15px;
-    background-color: white;
-    border: 1px solid #d9e0e8;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-}
+/* FORM HAPUS */
 
-.detail-content p {
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
-
-.aksi form {
+.form-hapus {
     display: inline-block;
     vertical-align: middle;
+    margin: 0;
 }
 
 .hapus-btn {
     background-color: white;
     color: #b42318;
     border: 1px solid #d92d20;
-    padding: 10px 16px;
+    padding: 9px 14px;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .hapus-btn:hover {
     background-color: #fff1f0;
+    border-color: #b42318;
 }
 
-/* DATA KOSONG */
-.history-table td.empty-data {
-    text-align: center;
-    padding: 30px;
-    color: #667085;
+/* ========================================
+   DATA KOSONG
+======================================== */
+
+.empty-data {
+    text-align: center !important;
+    padding: 40px 20px !important;
+    color: #777;
 }
 
-/* ALERT */
-.alert-success {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    color: #027a48;
-    background-color: #ecfdf3;
-    border: 1px solid #abefc6;
-    border-radius: 8px;
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
 }
 
-.alert-close {
-    border: none;
-    background: none;
-    font-size: 22px;
-    color: inherit;
-    cursor: pointer;
+.empty-data p {
+    font-size: 14px;
 }
 
-/* MODAL FOTO */
+/* ========================================
+   MODAL PREVIEW FOTO
+======================================== */
+
 .foto-modal {
     display: none;
     position: fixed;
+    z-index: 9999;
     inset: 0;
-    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
 }
 
-.foto-modal.show,
 .foto-modal.active {
     display: flex;
 }
 
 .foto-modal-content {
     position: relative;
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    background-color: white;
+    padding: 12px;
+    border-radius: 10px;
 }
 
 .foto-modal-content img {
+    display: block;
     max-width: 100%;
-    max-height: 85vh;
-    border-radius: 8px;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 5px;
 }
 
 .foto-modal-close {
     position: absolute;
-    top: -14px;
-    right: -14px;
-    width: 34px;
-    height: 34px;
+    top: -15px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
     border: none;
     border-radius: 50%;
-    background: white;
-    font-size: 22px;
+    background-color: white;
+    color: #172b4d;
+    font-size: 25px;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+/* ========================================
+   RESPONSIVE TABLET
+======================================== */
 
+@media (max-width: 992px) {
     .sidebar {
         width: 220px;
-        padding: 20px 15px;
+        min-width: 220px;
     }
 
-    .logo {
-        font-size: 24px;
-        padding-left: 0;
+    .dashboard-content {
+        padding: 25px;
     }
 
-    .logo-icon {
-        width: 30px;
-        height: 30px;
+    .topbar {
+        padding: 15px 25px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+    .sifak-layout {
+        position: relative;
+    }
+
+    .sidebar {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-area {
+        width: 100%;
+    }
+
+    .topbar {
+        min-height: 65px;
+        justify-content: space-between;
+        padding: 12px 16px;
+        gap: 12px;
     }
 
     .sidebar-toggle {
         display: block;
     }
 
-    .topbar {
-        padding: 0 20px;
+    .user-info {
+        margin-right: auto;
+        gap: 7px;
     }
 
     .nama-user {
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .logout-btn {
-        font-size: 13px;
-        padding: 8px 16px;
+        padding: 9px 13px;
+        font-size: 12px;
     }
 
     .dashboard-content {
-        padding: 25px 20px;
+        padding: 22px 16px;
+    }
+
+    .dashboard-content h1 {
+        font-size: 23px;
     }
 
     .total-card {
         width: 100%;
+        max-width: 300px;
+    }
+
+    .history-section h2 {
+        font-size: 19px;
+    }
+
+    .table-container {
+        border-radius: 8px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE HP KECIL
+======================================== */
+
+@media (max-width: 400px) {
+    .topbar {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .user-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nama-user {
+        font-size: 12px;
+    }
+
+    .logout-btn {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .dashboard-content {
+        padding: 18px 12px;
+    }
+
+    .dashboard-content h1 {
+        font-size: 21px;
     }
 }

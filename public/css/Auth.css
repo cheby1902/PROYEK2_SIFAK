@@ -5,10 +5,22 @@
     box-sizing: border-box;
 }
 
+/* BACKGROUND FOTO GEDUNG ULBI */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #101d35;
     min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(16, 29, 53, 0.78),
+            rgba(16, 29, 53, 0.78)
+        ),
+        url('/images/gedung-ulbi.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* LOGIN WRAPPER */

@@ -122,15 +122,31 @@ Route::middleware(['auth', 'role:akademik'])
             ->name('user.destroy');
     });
 
+
 // ---------- MAHASISWA ----------
 Route::middleware(['auth', 'role:mahasiswa'])
     ->prefix('mahasiswa')
     ->name('mahasiswa.')
     ->group(function () {
 
+        // Dashboard mahasiswa
         Route::get('/dashboard', [MahasiswaController::class, 'dashboard'])
             ->name('dashboard');
 
+        // Halaman buat pengaduan
+        Route::get('/buat-pengaduan', [MahasiswaController::class, 'create'])
+            ->name('pengaduan.create');
+
+        // Proses simpan pengaduan
+        Route::post('/pengaduan', [MahasiswaController::class, 'store'])
+            ->name('pengaduan.store');
+
+        // Halaman detail pengaduan
+        Route::get('/pengaduan/{id}', [MahasiswaController::class, 'show'])
+            ->name('pengaduan.show');
+
+        // Hapus pengaduan
         Route::delete('/pengaduan/{id}', [MahasiswaController::class, 'destroy'])
             ->name('pengaduan.destroy');
+
     });
