@@ -1,4 +1,3 @@
-
 function openModal(id, btn = null) {
     const modal = document.getElementById(id);
 
@@ -29,6 +28,15 @@ function openModal(id, btn = null) {
         }
     }
 
+    // Popup foto: isi gambar dari atribut data-foto
+    if (btn && btn.dataset.foto) {
+        const img = modal.querySelector('img');
+
+        if (img) {
+            img.src = btn.dataset.foto;
+        }
+    }
+
     modal.classList.add('open');
 }
 
@@ -42,6 +50,12 @@ function closeModal(id) {
 
 // Hubungkan semua tombol buka dan tutup modal
 document.addEventListener('click', function (e) {
+    // Klik area gelap di luar kotak popup = tutup
+    if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('open');
+        return;
+    }
+
     const openButton = e.target.closest('[data-open-modal]');
 
     if (openButton) {
@@ -64,8 +78,6 @@ document.addEventListener('keydown', function (e) {
         });
     }
 });
-
-
 
 // Konfirmasi sebelum menghapus data
 document.addEventListener('submit', function (e) {

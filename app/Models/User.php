@@ -28,9 +28,11 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function getAuthPassword()
+    protected function casts(): array
     {
-        return $this->password;
+        return [
+            'password' => 'hashed',
+        ];
     }
 
     public function mahasiswa(): HasOne

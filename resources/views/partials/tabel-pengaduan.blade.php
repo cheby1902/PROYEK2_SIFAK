@@ -2,8 +2,17 @@
 <table>
     <thead>
         <tr>
-            <th>No</th><th>Nama</th><th>NIM</th><th>Email</th><th>Fasilitas</th><th>Lokasi</th>
-            <th>Tanggal</th><th>Deskripsi</th><th>Foto</th><th>Status</th><th>Aksi</th>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Email</th>
+            <th>Fasilitas</th>
+            <th class="col-lokasi">Lokasi</th>
+            <th>Tanggal</th>
+            <th class="col-deskripsi">Deskripsi</th>
+            <th>Foto</th>
+            <th>Status</th>
+            <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -14,13 +23,19 @@
             <td>{{ $p->user?->mahasiswa?->npm ?? '-' }}</td>
             <td>{{ $p->user?->email ?? '-' }}</td>
             <td>{{ $p->fasilitas?->nama_fasilitas ?? '-' }}</td>
-            <td>{{ $p->lokasi }}</td>
-            <td>{{ $p->tanggal_pengaduan->translatedFormat('d F Y') }}</td>
-            <td class="col-deskripsi">{{ $p->deskripsi }}</td>
+            <td class="col-lokasi">{{ $p->lokasi }}</td>
+            <td>{{ $p->tanggal_pengaduan->translatedFormat('d M Y') }}</td>
+            <td class="col-deskripsi">
+            <div class="deskripsi-clamp" title="{{ $p->deskripsi }}">{{ $p->deskripsi }}</div>
+            </td>
             <td>
-                <div class="thumb">
-                    @if($p->foto)<img src="{{ asset('storage/'.$p->foto) }}" alt="Foto">@else Foto @endif
-                </div>
+                @if($p->foto)
+                    <button type="button" class="btn-foto"
+                        data-open-modal="modalFoto"
+                        data-foto="{{ asset('storage/'.$p->foto) }}">Foto</button>
+                @else
+                    <span class="btn-foto btn-foto-kosong">-</span>
+                @endif
             </td>
             <td>@include('partials.status-badge', ['status' => $p->status])</td>
             <td>
@@ -38,4 +53,14 @@
     @endforelse
     </tbody>
 </table>
+</div>
+
+{{-- Popup foto --}}
+<div class="modal" id="modalFoto">
+    <div class="modal-box modal-foto">
+        <img src="" alt="Foto pengaduan">
+        <div class="modal-actions">
+            <button type="button" class="btn btn-light" data-close-modal="modalFoto">Tutup</button>
+        </div>
+    </div>
 </div>

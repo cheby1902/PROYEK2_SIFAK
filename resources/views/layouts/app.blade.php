@@ -7,15 +7,32 @@
     <title>@yield('title', 'SIFAK')</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @stack('styles')
 </head>
 <body>
 @php $role = auth()->user()->role; @endphp
+
+{{-- SIDEBAR --}}
 <aside class="sidebar">
     <div class="logo">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M3 21V9l4-3v15H3zm5 0V4l4-2 4 2v17h-3v-4h-2v4H8zm9 0V6l4 3v12h-4z"/></svg>
-        SIFAK
+        <svg class="logo-icon" viewBox="0 0 64 64" fill="#ffffff" aria-hidden="true">
+            <path d="M30 6 L44 16 V58 H16 V16 Z"/>
+            <path d="M2 36 L11 30 L20 36 V58 H2 Z"/>
+            <path d="M44 36 L53 30 L62 36 V58 H44 Z"/>
+            <g fill="#172b4d">
+                <rect x="25" y="22" width="4" height="4"/>
+                <rect x="32" y="22" width="4" height="4"/>
+                <rect x="25" y="30" width="4" height="4"/>
+                <rect x="32" y="30" width="4" height="4"/>
+                <rect x="25" y="46" width="10" height="12"/>
+                <rect x="6" y="42" width="4" height="4"/>
+                <rect x="6" y="50" width="4" height="4"/>
+                <rect x="52" y="42" width="4" height="4"/>
+                <rect x="52" y="50" width="4" height="4"/>
+            </g>
+        </svg>
+        <span>SIFAK</span>
     </div>
+
     <nav class="menu">
         @if($role === 'sarpras')
             <a href="{{ route('sarpras.dashboard') }}" class="{{ request()->routeIs('sarpras.dashboard') ? 'active' : '' }}">Dashboard</a>
@@ -27,9 +44,19 @@
     </nav>
 </aside>
 
+{{-- AREA UTAMA --}}
 <div class="main">
     <header class="topbar">
-        <strong>{{ \Illuminate\Support\Str::before(auth()->user()->email, '@') }}</strong>
+        <div class="user-info">
+            <div class="user-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+                </svg>
+            </div>
+            <div class="nama-user">{{ \Illuminate\Support\Str::before(auth()->user()->email, '@') }}</div>
+        </div>
+
         <form method="POST" action="{{ Route::has('logout') ? route('logout') : '#' }}">
             @csrf
             <button type="submit">Logout</button>

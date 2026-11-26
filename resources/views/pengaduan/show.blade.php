@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Detail Pengaduan - SIFAK')
 @section('content')
+<a href="{{ route('sarpras.pengaduan.index') }}" class="btn-back">&larr; Kembali ke Kelola Pengaduan</a>
 <h1>Detail Pengaduan</h1>
-<p class="sub"><a href="{{ route('sarpras.pengaduan.index') }}" class="back-link">&larr; Kembali</a></p>
 
 {{-- 1. Data laporan --}}
 <div class="detail">
