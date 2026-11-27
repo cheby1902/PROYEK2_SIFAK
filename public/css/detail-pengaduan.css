@@ -1,3 +1,4 @@
+
 /* RESET */
 * {
     margin: 0;
@@ -153,7 +154,7 @@ body {
 /* TOMBOL KEMBALI KE DASHBOARD */
 .detail-btn {
     display: inline-block;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding: 9px 16px;
     background-color: #172b4d;
     color: #ffffff;
@@ -273,14 +274,17 @@ body {
     margin-bottom: 0;
 }
 
+/* ALASAN PENOLAKAN */
 .alasan-box {
     margin-top: 12px;
     padding: 10px 14px;
     font-size: 14px;
+    line-height: 1.5;
     color: #b42318;
     background-color: #fff1f0;
     border: 1px solid #fecdca;
     border-radius: 8px;
+    overflow-wrap: anywhere;
 }
 
 /* RIWAYAT STATUS */
@@ -323,10 +327,13 @@ body {
     color: #475467;
 }
 
+/* KETERANGAN RIWAYAT STATUS */
 .timeline-note {
-    margin-top: 2px;
+    margin-top: 5px;
     font-size: 13px;
+    line-height: 1.5;
     color: #667085;
+    overflow-wrap: anywhere;
 }
 
 .timeline-empty {

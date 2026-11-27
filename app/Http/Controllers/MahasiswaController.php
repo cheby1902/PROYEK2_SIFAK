@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pengaduan;
 use App\Models\Fasilitas;
+use App\Models\RiwayatStatus;
 
 class MahasiswaController extends Controller
 {
@@ -24,10 +25,13 @@ class MahasiswaController extends Controller
     }
     public function show($id)
 {
-    $pengaduan = Pengaduan::with('fasilitas')
+    $pengaduan = Pengaduan::with(['fasilitas', 'riwayatStatus'])
         ->where('id_pengaduan', $id)
         ->where('id_user', Auth::user()->id_user)
         ->firstOrFail();
+
+    $pengaduan->riwayatStatus = $pengaduan->riwayatStatus
+        ->sortBy('tanggal_perubahan');
 
     return view('PengaduanMahasiswa.DetailPengaduan', compact('pengaduan'));
 }
@@ -61,11 +65,9 @@ class MahasiswaController extends Controller
         'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
     ]);
 
-    // Simpan foto ke storage
     $foto = $request->file('foto')->store('pengaduan', 'public');
 
-    // Simpan data pengaduan
-    Pengaduan::create([
+    $pengaduan = Pengaduan::create([
         'id_user' => Auth::user()->id_user,
         'id_fasilitas' => $request->id_fasilitas,
         'lokasi' => $request->lokasi,
@@ -74,6 +76,14 @@ class MahasiswaController extends Controller
         'foto' => $foto,
         'status' => 'Menunggu',
         'alasan_penolakan' => null,
+    ]);
+
+    RiwayatStatus::create([
+        'id_pengaduan' => $pengaduan->id_pengaduan,
+        'id_user' => Auth::user()->id_user,
+        'status' => 'Menunggu',
+        'keterangan' => 'Pengaduan berhasil dibuat dan menunggu proses.',
+        'tanggal_perubahan' => now(),
     ]);
 
     return redirect()->route('mahasiswa.dashboard')

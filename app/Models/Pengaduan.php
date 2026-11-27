@@ -28,7 +28,7 @@ class Pengaduan extends Model
     protected function casts(): array
     {
         return [
-            'tanggal_pengaduan' => 'date',
+            'tanggal_pengaduan' => 'datetime',
         ];
     }
 

@@ -164,40 +164,58 @@
 
             {{-- RIWAYAT STATUS --}}
             <section class="riwayat-section">
+                 <h3>Riwayat Status</h3>
+                 <ul class="timeline">
 
-                <h3>Riwayat Status</h3>
+        @forelse($pengaduan->riwayatStatus as $r)
+            <li class="timeline-item">
 
-                <ul class="timeline">
+                <span class="status-badge status-{{ strtolower(str_replace(' ', '-', $r->status ?? 'menunggu')) }}">
+                    {{ $r->status ?? '-' }}
+                </span>
 
-                    @forelse($riwayat as $r)
-                        <li class="timeline-item">
+                <div class="timeline-date">
+                    {{ $r->tanggal_perubahan
+                        ? \Carbon\Carbon::parse($r->tanggal_perubahan)->translatedFormat('d F Y, H:i')
+                        : '-' }}
+                </div>
 
-                            <span class="status-badge status-{{ strtolower(str_replace(' ', '-', $r->status ?? 'menunggu')) }}">
-                                {{ $r->status ?? '-' }}
-                            </span>
+                {{-- KETERANGAN BERDASARKAN STATUS --}}
+                <div class="timeline-note">
 
-                            <div class="timeline-date">
-                                {{ $r->tanggal_perubahan
-                                    ? \Carbon\Carbon::parse($r->tanggal_perubahan)->translatedFormat('d F Y, H:i')
-                                    : '-' }}
-                            </div>
+                    @if($r->status == 'Menunggu')
+                        Pengaduan berhasil dibuat dan menunggu proses.
 
-                            @if($r->keterangan)
-                                <div class="timeline-note">
-                                    {{ $r->keterangan }}
-                                </div>
-                            @endif
+                    @elseif($r->status == 'Diproses')
+                        Pengaduan sedang ditindaklanjuti.
 
-                        </li>
-                    @empty
-                        <li class="timeline-empty">
-                            Belum ada riwayat status.
-                        </li>
-                    @endforelse
+                    @elseif($r->status == 'Selesai')
+                        Pengaduan telah selesai ditangani.
 
-                </ul>
+                    @elseif($r->status == 'Ditolak')
+                        Maaf, pengaduan anda ditolak.
+                    @endif
 
-            </section>
+                </div>
+
+                {{-- ALASAN PENOLAKAN DARI SARPRAS --}}
+                @if($r->status == 'Ditolak' && $pengaduan->alasan_penolakan)
+                    <div class="alasan-box">
+                        <strong>Alasan Penolakan:</strong>
+                        <p>{{ $pengaduan->alasan_penolakan }}</p>
+                    </div>
+                @endif
+
+            </li>
+        @empty
+            <li class="timeline-empty">
+                Belum ada riwayat status.
+            </li>
+        @endforelse
+
+    </ul>
+
+</section>
 
         </main>
 
